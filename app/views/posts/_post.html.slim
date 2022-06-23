@@ -1,4 +1,8 @@
 div id="#{dom_id post}"
-  h1 = post.title
-  p = pluralize(post.views, "view")
+  h2 = post.title
+  h4 
+    | posted by 
+    = post.user.email
+
+  h6 = pluralize(post.views, "view")
   p = post.body
