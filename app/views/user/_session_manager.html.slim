@@ -11,12 +11,10 @@
       li = link_to new_post_path,
         class: 'dropdown-item'
         | New Post
-        li = link_to root_path,
+
+        li = link_to 'Edit Account',
+          edit_user_registration_path,
           class: 'dropdown-item'
-          | Action
-        li = link_to root_path,
-          class: 'dropdown-item'
-          | Another Action
         li 
           hr.dropdown-divider /
 
