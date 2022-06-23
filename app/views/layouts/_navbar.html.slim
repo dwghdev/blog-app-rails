@@ -24,17 +24,4 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
               = link[:label]
 
       ul.navbar-nav
-        li.nav-item.dropdown
-          = link_to root_path, 
-            class: 'nav-link dropdown-toggle', 
-            id: 'navbarDropdownMenuLink',
-            'data-bs-toggle': 'dropdown', 
-            'aria-expanded': 'false'
-              = @dropdown_label
-
-          ul.dropdown-menu(aria-labelledby='navbarDropdownMenuLink')
-            - @dropdown_links.each_with_index do |link, idx|
-              li 
-                = link_to root_path, 
-                  class: 'dropdown-item' 
-                  = "#{idx}: #{link}"
+        == render 'user/session_manager'

@@ -1,0 +1,26 @@
+- if current_user
+  li.nav-item.dropdown
+    = link_to root_path, 
+      class: 'nav-link dropdown-toggle', 
+      id: 'navbarDropdownMenuLink',
+      'data-bs-toggle': 'dropdown', 
+      'aria-expanded': 'false'
+        = @dropdown_label
+
+    ul.dropdown-menu(aria-labelledby='navbarDropdownMenuLink')
+      li = link_to new_post_path,
+        class: 'dropdown-item'
+        | New Post
+        li = link_to root_path,
+          class: 'dropdown-item'
+          | Action
+        li = link_to root_path,
+          class: 'dropdown-item'
+          | Another Action
+        li 
+          hr.dropdown-divider /
+
+        li = button_to 'Sign out', 
+          destroy_user_session_path, 
+          method: :delete,
+          class: 'dropdown-item'
