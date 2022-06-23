@@ -1,0 +1,50 @@
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+  .container-fluid
+    = link_to root_path, 
+      class: 'navbar-brand' 
+      | Blog
+
+    button.navbar-toggler(
+      aria-expanded='false' 
+      data-bs-toggle='collapse' 
+      aria-label='Toggle navigation' 
+      aria-controls='navbarNavDropdown' 
+      data-bs-target='#navbarNavDropdown'
+    )
+      .navbar-toggler-icon
+
+    .collapse.navbar-collapse#navbarNavDropdown
+      ul.navbar-nav.me-auto.mb-2.mb-lg-0
+        li.nav-item
+          = link_to root_path, 
+            class: 'nav-link active', 
+            'aria-current': 'page'
+            | Home
+
+        li.nav-item
+          = link_to root_path, 
+            class: 'nav-link' 
+            | About
+
+      ul.navbar-nav
+        li.nav-item.dropdown
+          = link_to root_path, 
+            class: 'nav-link dropdown-toggle', 
+            id: 'navbarDropdownMenuLink',
+            'data-bs-toggle': 'dropdown', 
+            'aria-expanded': 'false'
+              | Dropdown link
+          ul.dropdown-menu(aria-labelledby='navbarDropdownMenuLink')
+            li 
+              = link_to root_path, 
+                class: 'dropdown-item' 
+                | Action
+
+            li
+              = link_to root_path,
+                class: 'dropdown-item' 
+                | Another action
+            li 
+              = link_to root_path, 
+                class: 'dropdown-item' 
+                | Something else here

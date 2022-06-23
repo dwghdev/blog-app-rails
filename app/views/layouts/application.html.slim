@@ -17,4 +17,6 @@ html
     = javascript_importmap_tags
 
   body
-    = yield
+    main
+      = render 'layouts/navbar'
+      = yield
