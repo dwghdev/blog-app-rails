@@ -8,9 +8,9 @@
         = current_user.name
 
     ul.dropdown-menu(aria-labelledby='navbarDropdownMenuLink')
-      li = link_to new_post_path,
-        class: 'dropdown-item'
-        | New Post
+        li = link_to 'New Post',
+          new_post_path,
+          class: 'dropdown-item'
 
         li = link_to 'Edit Account',
           edit_user_registration_path,

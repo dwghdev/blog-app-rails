@@ -73,3 +73,4 @@ end
 
 gem "slim-rails"
 gem "devise"
+gem "noticed", "~> 1.5"
