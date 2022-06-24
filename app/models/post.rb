@@ -1,4 +1,6 @@
 class Post < ApplicationRecord
+  extend FriendlyId
+
   belongs_to :user
   has_many :comments, dependent: :destroy
   has_many :notifications, through: :user
@@ -12,4 +14,10 @@ class Post < ApplicationRecord
 
   validates :title, presence: true, length: {minimum: 5, maximum: 50}
   validates :body, presence: true
+
+  friendly_id :title, use: %i[slugged]
+
+  def should_generate_new_friendly_id?
+    title_changed? || slug.blank?
+  end
 end
