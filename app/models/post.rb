@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
-  has_many :notifications, through: :user, dependent: :destroy
+  has_many :notifications, through: :user
   has_one :content, 
     class_name: "ActionText::RichText", 
     as: :record, 
