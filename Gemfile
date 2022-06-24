@@ -74,3 +74,5 @@ end
 gem "slim-rails"
 gem "devise"
 gem "noticed", "~> 1.5"
+
+gem "ransack", "~> 3.2"
