@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   before_action :set_dropdown
   # Notification
   before_action :set_notifications, if: :current_user
+  # Search 
+  before_action :set_query
 
   private 
   # Navbar
@@ -26,5 +28,10 @@ class ApplicationController < ActionController::Base
     notifications = Notification.where(recipient: current_user).newest_first.limit(9)
     @unread = notifications.unread
     @read = notifications.read
+  end
+
+  # Search 
+  def set_query
+    @query = Post.ransack(params[:q])
   end
 end
