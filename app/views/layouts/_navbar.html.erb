@@ -1,0 +1,34 @@
+<%- title = "BLOG" %>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark"
+  <div class="container-fluid">
+    <%= link_to title, root_path, class: "navbar-brand"%>
+
+    <button class="navbar-toggler" 
+      aria-expanded="false" 
+      data-bs-toggle="collapse" 
+      aria-label="Toggle navigation"
+      aria-controls="navbarNavDropdown" 
+      data-bs-target="#navbarNavDropdown"
+    >
+      <div class="navbar-toggler-icon"></div>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <% @nav_links.each do |link| %>
+          <li class="nav-item">
+            <%= link_to link[:path], class: "nav-link" do %>
+              <%= link[:label] %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <ul class="navbar-nav">
+      <%= render "search/form" %>
+      <%= render "layouts/notifications" %>
+      <%= render "user/session_manager" %>
+    </ul>
+</nav>

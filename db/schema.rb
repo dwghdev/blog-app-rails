@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_23_220312) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_24_054215) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -65,7 +65,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_23_220312) do
     t.string "recipient_type", null: false
     t.bigint "recipient_id", null: false
     t.string "type", null: false
-    t.jsonb "params"
+    t.json "params"
     t.datetime "read_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -75,7 +75,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_23_220312) do
 
   create_table "posts", force: :cascade do |t|
     t.string "title"
-    t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "views", default: 0
@@ -93,6 +92,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_23_220312) do
     t.datetime "updated_at", null: false
     t.string "name"
     t.integer "views", default: 0
+    t.integer "role"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
