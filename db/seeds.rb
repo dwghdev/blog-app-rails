@@ -17,20 +17,21 @@ User.create(
 User.create(
   email: "test@email.com",
   password: "password",
-  password_confirmation: "password"<
+  password_confirmation: "password",
   name: "Test", 
   role: User.roles[:user]
 )
 
 10.times do |x|
-  Post.create(
-    title: "Body #{x} words goes here",
+  post = Post.create(
+    title: "Title #{x}",
+    body: "Body #{x} words goes here",
     user_id: User.first.id
   )
 
   5.times do |x|
     Comment.create(
-      title: "Body #{x} words goes here",
+      body: "Body #{x} words goes here",
       user_id: User.second.id,
       post_id: post.id
     )
