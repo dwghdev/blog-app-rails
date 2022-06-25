@@ -13,7 +13,7 @@ class Comment < ApplicationRecord
     CommentNotification.with(
       comment: self, 
       post: post
-    ).deliver_later post.user
+    ).deliver_later(post.user)
   end
 
   def cleanup_notifications
