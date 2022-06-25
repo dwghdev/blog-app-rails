@@ -22,18 +22,31 @@ User.create(
   role: User.roles[:user]
 )
 
-10.times do |x|
-  post = Post.create(
-    title: "Title #{x}",
-    body: "Body #{x} words goes here",
-    user_id: User.first.id
-  )
+posts = []
+comments = []
 
-  5.times do |x|
-    Comment.create(
-      body: "Body #{x} words goes here",
-      user_id: User.second.id,
-      post_id: post.id
+elapsed = Benchmark.measure do
+  1000.times do |x|
+    puts "Creating post #{x}"
+    post = Post.new(
+      title: "Title #{x}",
+      user_id: User.first.id,
+      body: "Body #{x} words goes here"
     )
+    posts.push(post)
+
+    10.times do |y|
+      puts "Create comment #{y} for post #{x}"
+      comment = post.comments.new(
+        user_id: User.second.id,
+        body: "Body #{x} words goes here"
+      )
+      comments.push(comment)
+    end
   end
 end
+
+Post.import(posts)
+Comment.import(comments)
+
+puts "Elapsed time is#{elapsed.real} seconds"
