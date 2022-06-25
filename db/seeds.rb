@@ -22,10 +22,8 @@ User.create(
   role: User.roles[:user]
 )
 
-posts = []
-comments = []
-
 elapsed = Benchmark.measure do
+  posts = []
   1000.times do |x|
     puts "Creating post #{x}"
     post = Post.new(
@@ -33,20 +31,17 @@ elapsed = Benchmark.measure do
       user_id: User.first.id,
       body: "Body #{x} words goes here"
     )
-    posts.push(post)
 
     10.times do |y|
       puts "Create comment #{y} for post #{x}"
-      comment = post.comments.new(
+      post.comments.new(
         user_id: User.second.id,
         body: "Body #{x} words goes here"
       )
-      comments.push(comment)
     end
+    posts.push(post)
   end
+  Post.import(posts)
 end
 
-Post.import(posts)
-Comment.import(comments)
-
-puts "Elapsed time is#{elapsed.real} seconds"
+puts "Elapsed time is #{elapsed.real} seconds"

@@ -11,7 +11,7 @@ class PostsController < ApplicationController
   def show
     @post.update views: @post.views + 1
     @comments = @post.comments
-      .includes.(:user, :rich_text_body)
+      .includes(:user, :rich_text_body)
       .order(created_at: :desc)
 
     mark_notifications_as_read
@@ -24,14 +24,14 @@ class PostsController < ApplicationController
   def edit; end
 
   def create
-    @post = Post.new post_params
+    @post = Post.new(post_params)
     @post.user = current_user
 
     respond_to do |format|
       if @post.save
         format.html { 
-          redirect_to post_url @post, 
-          notice: 'Post was successfully created.'
+          redirect_to post_url @post,
+          notice: "Post was successfully created."
         }
         format.json { 
           render :show, 
