@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     registrations: "users/registrations"
   }
   get "/u/:id", to: "users#profile", as: "user"
+  resources :after_sign_up
 
   resources :posts do
     resources :comments
