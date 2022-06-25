@@ -3,12 +3,16 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
 
   def index
-    @posts = Post.all.order created_at: :desc
+    @posts = Post
+      .includes(:user, :rich_text_body)
+      .all.order(created_at: :desc)
   end
 
   def show
     @post.update views: @post.views + 1
-    @comments = @post.comments.order created_at: :desc
+    @comments = @post.comments
+      .includes.(:user, :rich_text_body)
+      .order(created_at: :desc)
 
     mark_notifications_as_read
   end
@@ -88,11 +92,6 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:id])
-
-    # If an old id or a numeric id was used to find the record, then
-    # the request slug will not match the current slug, and we should do
-    # a 301 redirect to the new path
-    # redirect_to @post, :status => :moved_permanently
   end
 
   def post_params
