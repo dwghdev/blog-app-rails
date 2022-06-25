@@ -28,12 +28,12 @@ class User < ApplicationRecord
     @form_step ||= "sign_up"
   end
 
-  with_options if: -> { required_for_step?("set_name") } do |step|
-    step.validates :first_name, presence: true
-    step.validates :last_name, presence: true
-  end
+  # with_options if: -> { required_for_step?("set_name") } do |step|
+  #   step.validates :first_name, presence: true
+  #   step.validates :last_name, presence: true
+  # end
 
-  validates_associated :address, if: -> { required_for_step("set_address") }
+  # validates_associated :address, if: -> { required_for_step("set_address") }
 
   def full_name
     "#{first_name.capitalize} #{last_name.capitalize}"
@@ -43,11 +43,11 @@ class User < ApplicationRecord
 
   def required_for_step?(step)
     # All fields are required if no form step is present
-    form_step.nil?
+    # form_step.nil?
 
     # All fields from previous steps are required if the
     # step parameter appears before or we are on the current step
-    form_steps.index(step.to_s) <= form_steps.index(form_step.to_s)
+    # form_steps.index(step.to_s) <= form_steps.index(form_step.to_s)
   end
 
   private

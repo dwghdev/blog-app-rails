@@ -51,9 +51,9 @@ elapsed = Benchmark.measure do
         user: user
       )
     end
-    posts.push(push)
+    posts.push(post)
   end
   Post.import(posts, recursive: true)
 end
 
-puts "Seeded development DB in #{elasped.real} seconds"
+puts "Seeded development DB in #{elapsed.real} seconds"
